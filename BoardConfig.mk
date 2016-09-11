@@ -20,9 +20,6 @@
 # definition file).
 #
 
-# Boldly go.
-USE_CLANG_PLATFORM_BUILD := true
-
 # Inherit from oppo-common
 -include device/oppo/common/BoardConfigCommon.mk
 
@@ -59,6 +56,9 @@ ENABLE_CPUSETS := true
 
 TARGET_USES_64_BIT_BINDER := true
 
+# Boldly go.
+USE_CLANG_PLATFORM_BUILD := true
+
 # Kernel
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 cma=32M@0-0xffffffff androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x80000000
@@ -71,11 +71,19 @@ TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_SOURCE := kernel/oneplus/msm8996
 TARGET_KERNEL_CONFIG := cyanogenmod_oneplus3_defconfig
-TARGET_GCC_VERSION := 5.3
-TARGET_GCC_VERSION_ARM64 := 5.3-kernel
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
-KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(strip $(HOST_OS))-x86/aarch64/$(TARGET_KERNEL_CROSS_COMPILE_PREFIX)5.3-kernel/bin
-TARGET_TOOLCHAIN_ROOT := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(strip $(HOST_OS))-x86/aarch64/$(TARGET_KERNEL_CROSS_COMPILE_PREFIX)5.3/bin
+
+# Kernel Toolchain
+KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(strip $(HOST_OS))-x86/aarch64/$(TARGET_KERNEL_CROSS_COMPILE_PREFIX)4.9-kernel/bin
+KERNEL_TOOLCHAIN_PREFIX := aarch64-linux-android-
+TARGET_GCC_VERSION_ARM64 := 5.3-kernel
+
+# Optimizations
+STRICT_ALIASING := false
+CLANG_O3 := false
+ENABLE_GCCONLY := false
+GRAPHITE_OPTS := false
+USE_PIPE := true
 
 # QCOM hardware
 BOARD_USES_QCOM_HARDWARE := true
