@@ -79,7 +79,7 @@ KERNEL_TOOLCHAIN_PREFIX := aarch64-linux-android-
 
 # Optimizations
 STRICT_ALIASING := false
-CLANG_O3 := false
+CLANG_O3 := true
 ENABLE_GCCONLY := false
 GRAPHITE_OPTS := false
 USE_PIPE := true
