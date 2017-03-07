@@ -139,12 +139,6 @@ PRODUCT_PACKAGES += \
     Snap \
     libcamera_shim
 
-# Connectivity Engine support (CNE)
-PRODUCT_PACKAGES += \
-    cneapiclient \
-    com.quicinc.cne \
-    services-ext
-
 # Display
 PRODUCT_PACKAGES += \
     copybit.msm8996 \
@@ -167,8 +161,8 @@ PRODUCT_PACKAGES += \
 
 # Fingerprint sensor
 PRODUCT_PACKAGES += \
-    fingerprintd \
-    OneplusPocketMode
+    OneplusPocketMode \
+    fingerprintd
 
 # Gello
 PRODUCT_PACKAGES += \
@@ -269,6 +263,10 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.rc \
     init.qcom.usb.sh \
     ueventd.qcom.rc
+
+# Recovery
+PRODUCT_PACKAGES += \
+    librecovery_updater_oneplus
 
 # RIL
 PRODUCT_PACKAGES += \

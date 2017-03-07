@@ -11,7 +11,7 @@ media.aac_51_output_enabled=true
 audio.offload.buffer.size.kb=32
 audio.offload.video=true
 audio.offload.pcm.16bit.enable=false
-audio.offload.pcm.24bit.enable=true
+audio.offload.pcm.24bit.enable=false
 audio.offload.track.enable=false
 audio.deep_buffer.media=false
 use.voice.path.for.pcm.voip=true
@@ -33,10 +33,11 @@ persist.bt.a2dp_offload_cap=sbc-aptx-aptxhd
 qcom.bluetooth.soc=rome
 
 # Camera
-persist.camera.imglib.fddsp=1
-persist.camera.llc=1
-persist.camera.llnoise=1
+camera.disable_zsl_mode=1
 camera.hal1.packagelist=com.skype.raider,com.whatsapp,com.tencent.mm,com.google.android.GoogleCamera
+
+# CNE (needed for IMS)
+persist.cne.feature=1
 
 # Display power reduction (FOSS)
 ro.qcom.dpps.sensortype=3
@@ -45,43 +46,35 @@ ro.qualcomm.foss=1
 config.foss.xml=1
 config.foss.path=/system/etc/FOSSConfig.xml
 
-# CNE
-persist.cne.feature=1
-
 # Data modules
 ro.use_data_netmgrd=true
 persist.data.netmgrd.qos.enable=true
 persist.data.mode=concurrent
 
+# Display
+persist.sys.strictmode.disable=true
+
 # Fingerprint
 persist.qfp=false
 
 # GPS
-persist.gps.qc_nlp_in_use=1
-persist.loc.nlp_name=com.qualcomm.location
+persist.gps.qc_nlp_in_use=0
 ro.gps.agps_provider=1
 
 # Graphics
-debug.sf.hw=1
-debug.egl.hw=1
 debug.gralloc.enable_fb_ubwc=1
-dev.pm.dyn_samplingrate=1
-persist.demo.hdmirotationlock=false
 ro.opengles.version=196609
 ro.sf.lcd_density=480
-persist.sys.wfd.virtual=0
 sdm.perf_hint_window=50
 persist.hwc.enable_vds=1
-sdm.debug.disable_rotator_split=1
+
+# Media
+media.camera.ts.monotonic=false
 
 # NFC
 ro.nfc.port=I2C
 
 # Perf
-ro.am.reschedule_service=true
-ro.vendor.extension_library=libqti-perfd-client.so
-ro.min_freq_0=307200
-ro.min_freq_4=307200
 ro.sys.fw.bg_apps_limit=60
 
 # QCOM

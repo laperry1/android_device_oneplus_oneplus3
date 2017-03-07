@@ -286,6 +286,14 @@ on boot
     # bond0 used by FST Manager
     chown wifi wifi /sys/class/net/bond0/bonding/queue_id
 
+    # Don't reset entire SoC on individual subsystem crash
+    write /sys/bus/msm_subsys/devices/subsys0/restart_level "related"
+    write /sys/bus/msm_subsys/devices/subsys1/restart_level "related"
+    write /sys/bus/msm_subsys/devices/subsys2/restart_level "related"
+    write /sys/bus/msm_subsys/devices/subsys3/restart_level "related"
+    write /sys/bus/msm_subsys/devices/subsys4/restart_level "related"
+    write /sys/bus/msm_subsys/devices/subsys5/restart_level "related"
+
 # msm specific files that need to be created on /data
 on post-fs-data
     mkdir /data/tombstones 0771 system system
@@ -434,12 +442,6 @@ on post-fs-data
     mkdir /data/misc/SelfHost/Running/ 2750 system shell
     mkdir /data/misc/SelfHost/socket/ 2770 system system
 
-    # Create PERFD deamon related dirs
-    mkdir /data/misc/perfd 0755 root system
-    chmod 2755 /data/misc/perfd
-    mkdir /data/system/perfd 0770 root system
-    chmod 2770 /data/system/perfd
-
     # NFC local data and nfcee xml storage
     mkdir /data/nfc 0770 nfc nfc
     mkdir /data/nfc/param 0770 nfc nfc
@@ -510,13 +512,6 @@ service qseecomd /system/bin/qseecomd
    group root
    writepid /dev/cpuset/system-background/tasks
 
-service perfd /system/vendor/bin/perfd
-   class main
-   user root
-   socket perfd seqpacket 0666 root system
-   disabled
-   writepid /dev/cpuset/system-background/tasks
-
 service seempd /system/bin/seempd
    class late_start
    user system
@@ -527,15 +522,6 @@ service secotad /system/bin/secotad
    class late_start
    user system
    group system
-
-service thermal-engine /system/vendor/bin/thermal-engine
-   class main
-   user root
-   socket thermal-send-client stream 0666 system system
-   socket thermal-recv-client stream 0660 system system
-   socket thermal-recv-passive-client stream 0666 system system
-   group root
-   writepid /dev/cpuset/system-background/tasks
 
 service time_daemon /system/bin/time_daemon
    class late_start
@@ -1361,20 +1347,4 @@ on property:sys.rainbow.recovery=1
 on property:sys.rainbow.recovery=0
     write /sys/class/leds/rgb/rgb_blink 0
 
-# happy dance!
-on post-fs-data
-    write /sys/class/leds/red/brightness 0
-    write /sys/class/leds/red/blink 0
-    write /sys/class/leds/green/brightness 0
-    write /sys/class/leds/green/blink 0
-    write /sys/class/leds/blue/brightness 0
-    write /sys/class/leds/blue/blink 0
-    write /sys/class/leds/rgb/rgb_blink 0
-    write /sys/class/leds/green/start_idx 0
-    write /sys/class/leds/green/pause_hi 0
-    write /sys/class/leds/green/pause_lo 0
-    write /sys/class/leds/green/ramp_step_ms 50
-    write /sys/class/leds/green/duty_pcts "16,25,33,41,50,58,66,74,83,91,100"
-    write /sys/class/leds/green/brightness 255
-    write /sys/class/leds/blue/brightness 255
-    write /sys/class/leds/green/blink 1
+
