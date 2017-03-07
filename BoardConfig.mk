@@ -57,7 +57,7 @@ ENABLE_CPUSETS := true
 TARGET_USES_64_BIT_BINDER := true
 
 # Boldly go.
-USE_CLANG_PLATFORM_BUILD := true
+USE_CLANG_PLATFORM_BUILD := false
 
 # Kernel
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 cma=32M@0-0xffffffff androidboot.selinux=permissive
@@ -79,7 +79,7 @@ KERNEL_TOOLCHAIN_PREFIX := aarch64-linux-android-
 
 # Optimizations
 STRICT_ALIASING := false
-CLANG_O3 := true
+CLANG_O3 := false
 ENABLE_GCCONLY := false
 GRAPHITE_OPTS := false
 USE_PIPE := true
