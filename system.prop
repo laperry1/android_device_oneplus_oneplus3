@@ -29,7 +29,7 @@ audio_hal.period_size=160
 
 # Bluetooth
 bt.max.hfpclient.connections=1
-persist.bt.enableAptXHD=true
+persist.bt.a2dp_offload_cap=sbc-aptx-aptxhd
 qcom.bluetooth.soc=rome
 
 # Camera
