@@ -35,7 +35,7 @@ TARGET_BOARD_INFO_FILE ?= $(PLATFORM_PATH)/board-info.txt
 TARGET_OTA_ASSERT_DEVICE := OnePlus3,oneplus3,OnePlus3T,oneplus3t
 
 # Use Snapdragon LLVM, if available
-TARGET_USE_SDCLANG := true
+# TARGET_USE_SDCLANG := true
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := msm8996
@@ -77,14 +77,14 @@ TARGET_KERNEL_CONFIG := lineageos_oneplus3_defconfig
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 
 # Kernel Toolchain
-KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(strip $(HOST_OS))-x86/aarch64/$(TARGET_KERNEL_CROSS_COMPILE_PREFIX)4.9/bin
+KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(strip $(HOST_OS))-x86/aarch64/$(TARGET_KERNEL_CROSS_COMPILE_PREFIX)6.x/bin
 KERNEL_TOOLCHAIN_PREFIX := aarch64-linux-android-
 
 # Optimizations
-STRICT_ALIASING := true
-CLANG_O3 := true
+STRICT_ALIASING := false
+CLANG_O3 := false
 ENABLE_GCCONLY := false
-GRAPHITE_OPTS := true
+GRAPHITE_OPTS := false
 USE_PIPE := true
 
 # QCOM hardware
